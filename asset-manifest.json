@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "https://morales-k.github.io/To-Do-List/static/css/main.34d3310c.css",
+    "main.js": "https://morales-k.github.io/To-Do-List/static/js/main.6ffe0f98.js",
+    "index.html": "https://morales-k.github.io/To-Do-List/index.html",
+    "main.34d3310c.css.map": "https://morales-k.github.io/To-Do-List/static/css/main.34d3310c.css.map",
+    "main.6ffe0f98.js.map": "https://morales-k.github.io/To-Do-List/static/js/main.6ffe0f98.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.34d3310c.css",
+    "static/js/main.6ffe0f98.js"
+  ]
+}
