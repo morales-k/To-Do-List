@@ -1,1 +1,1 @@
-A to-do list built using React.
+A to-do list built using React & CSS. This to-do list allows users to create new list items, mark items as complete and delete items. The to-do list features CSS animations and keyboard control for better user feedback and access. 
