@@ -1,18 +1,24 @@
 import React, {useState} from 'react'
+import PriorityIcon from './PriorityIcon';
+import { deleteTask, updateTask } from '../viewmodel/TaskVM';
 
 function Task(props) {
-  const { allTasks, setTasks, task, deleteTask, updateTask, completed } = props;
+  const { allTasks, setTasks, task, completed } = props;
   const [checked, setChecked] = useState(completed);
 
     return (
-      <li className={checked ? 'complete task' : 'task'}>
+      <li className="task">
+        <PriorityIcon
+          task={task}
+          allTasks={allTasks}
+          setTasks={setTasks} />
         <div className={checked ? 'checked-task complete-container' : 'task-checkbox complete-container'}>
           <input type="checkbox" id="completeCheckbox" name="markComplete" aria-label="Mark complete" onClick={() => {
-            updateTask(task.id, allTasks, setTasks);
+            updateTask(task.id, allTasks, setTasks, 'completed');
             setChecked(!checked);
           }} />
         </div>
-        <p>{task.title}</p>
+        <p className={checked ? 'complete' : ''}>{task.title}</p>
         <div className="delete-container">
           <input 
               type="checkbox" 
