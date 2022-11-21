@@ -1,8 +1,14 @@
 import React from 'react'
+import { filterTasks } from '../viewmodel/TaskVM'
 
-const Filter = () => {
+const Filter = (props) => {
+  const { tasks, setFilteredTasks } = props;
+
   return (
-    <select>
+    <select 
+        aria-label="Filter tasks"
+        name="filter" 
+        onChange={(e) => filterTasks(e.target.value, tasks, setFilteredTasks)}>
         <option>All</option>
         <option>Completed</option>
         <option>Priority</option>

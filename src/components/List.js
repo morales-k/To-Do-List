@@ -5,19 +5,20 @@ import Filter from './Filter';
 
 function List() {
   const [newTask, setNewTask] = useState('');
-  const [allTasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([]);
 
   useEffect(() => {
-    if (allTasks.length === 0) {
+    if (tasks.length === 0) {
       fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(response => response.json())
       .then(json => {
-        let tasks = json.slice(0, 7);
-        tasks.forEach(task => {
+        let initTasks = json.slice(0, 7);
+        initTasks.forEach(task => {
             let num = randomNum();
             task.priority = num % 2 === 0 ? true : false;
         })
-        setTasks(tasks);
+        setTasks(initTasks);
       });
     }
   }, []);
@@ -37,16 +38,28 @@ function List() {
 				placeholder="Start typing..." 
 				autoFocus={true} 
 				onKeyUp={(e) => getTask(e, setNewTask)} />
-          <button className="add-btn" onClick={() => addTask(newTask, allTasks, setNewTask, setTasks)}>&#43;</button>
+          <button className="add-btn" onClick={() => addTask(newTask, tasks, setNewTask, setTasks)}>&#43;</button>
         </div>
-		<Filter />
+		<Filter
+            tasks={tasks}
+            setFilteredTasks={setFilteredTasks} />
         <ul className="task-list">
           {
-            allTasks && allTasks.map(task => {
+            !!filteredTasks?.length ? 
+            filteredTasks && filteredTasks.map(task => {
+                return (
+                <Task 
+                    key={'task' + task.id} 
+                    tasks={tasks}
+                    setTasks={setTasks}
+                    task={task} />
+                );
+            }) :
+            tasks && tasks.map(task => {
               return (
               <Task 
                   key={'task' + task.id} 
-                  allTasks={allTasks}
+                  tasks={tasks}
                   setTasks={setTasks}
                   task={task} />
               );

@@ -18,12 +18,12 @@ export function getTask(e, setNewTask) {
  * Updates a task based on a passed field.
  * 
  * @param {number} taskID - Task identifier.
- * @param {Array} allTasks - List of all tasks.
+ * @param {Array} tasks - List of all tasks.
  * @param {Function} setTasks - Sets the task list.
  * @param {string} field - Indicates which task field to update.
  */
-export function updateTask(taskID, allTasks, setTasks, field) {
-  const updatedTasks = [...allTasks];
+export function updateTask(taskID, tasks, setTasks, field) {
+  const updatedTasks = [...tasks];
 
     updatedTasks.map(task => {
       if (task.id === taskID) {
@@ -39,16 +39,44 @@ export function updateTask(taskID, allTasks, setTasks, field) {
 }
 
 /**
+ * Filters tasks by the selected value.
+ * 
+ * @param {string} value - Task value to sort by.
+ * @param {array} tasks - List of all tasks.
+ * @param {Function} setFilteredTasks - Sets the filtered tasks list.
+ */
+export function filterTasks(value, tasks, setFilteredTasks) {
+  let updatedTasks = [];
+
+  switch(value) {
+    case 'Completed':
+      updatedTasks = [...tasks].filter(task => task.completed);
+      break;
+    case 'Priority':
+      updatedTasks = [...tasks].filter(task => task.priority);
+      break;
+    case 'Uncomplete':
+      updatedTasks = [...tasks].filter(task => task.completed === false);
+      break;
+    case 'All':
+    default:
+      updatedTasks = [];
+      break;
+  }
+  setFilteredTasks(updatedTasks);
+}
+
+/**
  * Creates a new task object.
  * 
  * @param {string} newTask - Task description.
- * @param {Array} allTasks - List of all tasks.
+ * @param {Array} tasks - List of all tasks.
  * @param {Function} setNewTask - Sets task description.
  * @param {Function} setTasks - Sets the task list.
  */
-export function addTask(newTask, allTasks, setNewTask, setTasks) {
+export function addTask(newTask, tasks, setNewTask, setTasks) {
     if (newTask !== "") {
-      const updatedTasks = [...allTasks];
+      const updatedTasks = [...tasks];
       const taskObj = {
         id: randomNum(),
         title: newTask,
@@ -70,10 +98,10 @@ export function addTask(newTask, allTasks, setNewTask, setTasks) {
  * Removes any task matching taskID.
  * 
  * @param {number} taskID - Task identifier.
- * @param {Array} allTasks - List of tasks.
+ * @param {Array} tasks - List of tasks.
  * @param {Function} setTasks - Sets the task list.
  */
-export function deleteTask(taskID, allTasks, setTasks) {
-    const updatedTasks = [...allTasks].filter(task => task.id !== taskID);
+export function deleteTask(taskID, tasks, setTasks) {
+    const updatedTasks = [...tasks].filter(task => task.id !== taskID);
     setTasks(updatedTasks);
 }
