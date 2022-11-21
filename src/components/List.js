@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getTask, updateTask, addTask, deleteTask } from '../viewmodel/TaskVM';
+import { getTask, addTask, randomNum } from '../viewmodel/TaskVM';
 import Task from './Task';
+import Filter from './Filter';
 
 function List() {
   const [newTask, setNewTask] = useState('');
@@ -11,7 +12,12 @@ function List() {
       fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(response => response.json())
       .then(json => {
-        setTasks(json.slice(0, 10));
+        let tasks = json.slice(0, 7);
+        tasks.forEach(task => {
+            let num = randomNum();
+            task.priority = num % 2 === 0 ? true : false;
+        })
+        setTasks(tasks);
       });
     }
   }, []);
@@ -33,17 +39,16 @@ function List() {
 				onKeyUp={(e) => getTask(e, setNewTask)} />
           <button className="add-btn" onClick={() => addTask(newTask, allTasks, setNewTask, setTasks)}>&#43;</button>
         </div>
+		<Filter />
         <ul className="task-list">
           {
             allTasks && allTasks.map(task => {
               return (
               <Task 
-			  		key={'task' + task.id} 
-					allTasks={allTasks}
-					setTasks={setTasks}
-					task={task} 
-					deleteTask={deleteTask} 
-					updateTask={updateTask} />
+                  key={'task' + task.id} 
+                  allTasks={allTasks}
+                  setTasks={setTasks}
+                  task={task} />
               );
             })
           }
