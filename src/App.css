@@ -49,7 +49,6 @@ nav {
 
 #taskInput {
   width: 100%;
-  margin-bottom: 10%;
   padding: 2.5% 2.5% 0.5% 2.5%;
   border: 2px solid #bcbcbc;
   border-radius: 6px;
@@ -62,6 +61,30 @@ nav {
   border: 2px solid #bcbcbc;
   border-radius: 2px;
   outline: none;
+}
+
+select {
+  width: 100px;
+  margin: 2% 1%;
+}
+
+#priorityIcon {
+  width: 16px;
+  height: 16px;
+  font-size: 0.7em;
+  text-align: center;
+  margin-right: 2%;
+  border-radius: 50%;
+  border: 1px solid #797979;
+  color: #797979;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#priorityIcon.priority {
+  color: #ffa91a;
+  border: 1px solid #4d4d4d;
+  font-weight: bold;
 }
 
 .add-btn {
@@ -126,6 +149,7 @@ nav {
 .task p {
   width: 80%;
   margin: 0 auto;
+  margin-left: 2%;
 }
 
 .complete {
