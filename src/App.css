@@ -155,7 +155,7 @@ select {
   justify-content: space-between;
   align-items: center;
   border: none;
-  border-bottom: 5px double #6593a6;
+  border-bottom: 5px double #4d4d4d;
   padding: 2%;
   word-wrap: anywhere;
   font-size: 1.1em;
@@ -210,7 +210,6 @@ select {
   color: #f2f2f2;
 }
 
-.complete-container:focus-within,
 .delete-container:focus-within {
   animation: shift 1s ease-in-out forwards;
 }
@@ -229,10 +228,10 @@ select {
 }
 
 .checked-task {
-  position: relative;
-  z-index: 0;
   width: 18px;
   height: 18px;
+  position: relative;
+  z-index: 0;
   border-radius: 2px;
   overflow: hidden;
 }
@@ -250,9 +249,9 @@ select {
   background-size: 50% 50%, 50% 50%; /* Split border (background) into 4 parts. */
   background-position: 0 0, 100% 0, 100% 100%, 0 100%;
   background-image: linear-gradient(#ffa91a, #ffa91a),
-    linear-gradient(#6593a6, #6593a6), linear-gradient(#6593a6, #6593a6),
-    linear-gradient(#6593a6, #6593a6);
-  animation: rotate 1s linear forwards;
+    linear-gradient(#4d4d4d, #4d4d4d), linear-gradient(#4d4d4d, #4d4d4d),
+    linear-gradient(#4d4d4d, #4d4d4d);
+  animation: rotate 1.2s linear forwards;
 }
 
 /* Inner box */
@@ -278,20 +277,20 @@ select {
 @keyframes rotate {
   25% {
     background-image: linear-gradient(#e7e7e7, #e7e7e7),
-      linear-gradient(#6593a6, #6593a6), linear-gradient(#ffa91a, #ffa91a),
-      linear-gradient(#6593a6, #6593a6);
+      linear-gradient(#4d4d4d, #4d4d4d), linear-gradient(#ffa91a, #ffa91a),
+      linear-gradient(#4d4d4d, #4d4d4d);
   }
 
   50% {
     background-image: linear-gradient(#e7e7e7, #e7e7e7),
       linear-gradient(#e7e7e7, #e7e7e7), linear-gradient(#ffa91a, #ffa91a),
-      linear-gradient(#6593a6, #6593a6);
+      linear-gradient(#4d4d4d, #4d4d4d);
   }
 
   75% {
     background-image: linear-gradient(#e7e7e7, #e7e7e7),
       linear-gradient(#e7e7e7, #e7e7e7), linear-gradient(#e7e7e7, #e7e7e7),
-      linear-gradient(#6593a6, #6593a6);
+      linear-gradient(#4d4d4d, #4d4d4d);
   }
 
   100% {
@@ -310,7 +309,7 @@ select {
 
 @keyframes shift {
   50% {
-    transform: rotate(25deg);
+    transform: rotate(10deg);
   }
 
   100% {
