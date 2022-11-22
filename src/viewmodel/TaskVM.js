@@ -45,7 +45,8 @@ export function updateTask(taskID, tasks, setTasks, field) {
  * @param {array} tasks - List of all tasks.
  * @param {Function} setFilteredTasks - Sets the filtered tasks list.
  */
-export function filterTasks(value, tasks, setFilteredTasks) {
+export function filterTasks(tasks, setFilteredTasks) {
+  let value = document.getElementById("filterTasks").value;
   let updatedTasks = [];
 
   switch(value) {
@@ -89,7 +90,6 @@ export function addTask(newTask, tasks, setNewTask, setTasks) {
       setTasks(updatedTasks);
     }
     
-    // Clear newTask & input.
     setNewTask('');
     document.querySelector('#taskInput').value = '';
 }

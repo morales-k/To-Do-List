@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTask, addTask, randomNum } from '../viewmodel/TaskVM';
+import { getTask, addTask, filterTasks, randomNum } from '../viewmodel/TaskVM';
 import Task from './Task';
 import Filter from './Filter';
 
@@ -7,6 +7,7 @@ function List() {
   const [newTask, setNewTask] = useState('');
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
+  let filter = document.getElementById("filterTasks");
 
   useEffect(() => {
     if (tasks.length === 0) {
@@ -22,6 +23,12 @@ function List() {
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (!!tasks?.length) {
+        filterTasks(tasks, setFilteredTasks);
+    }
+  }, [tasks]);
 
     return (
       <>
@@ -42,19 +49,21 @@ function List() {
         </div>
 		<Filter
             tasks={tasks}
-            setFilteredTasks={setFilteredTasks} />
+            filteredTasks={filteredTasks}
+            setFilteredTasks={setFilteredTasks}
+            filterValue={filter ? filter.value.toLowerCase() : 'all'} />
         <ul className="task-list">
           {
-            !!filteredTasks?.length ? 
-            filteredTasks && filteredTasks.map(task => {
-                return (
-                <Task 
-                    key={'task' + task.id} 
-                    tasks={tasks}
-                    setTasks={setTasks}
-                    task={task} />
-                );
-            }) :
+            filter && filter.value !== 'All' ? 
+            !!filteredTasks?.length && filteredTasks.map(task => {
+                    return (
+                    <Task 
+                        key={'task' + task.id} 
+                        tasks={tasks}
+                        setTasks={setTasks}
+                        task={task} />
+                    );
+                }) :
             tasks && tasks.map(task => {
               return (
               <Task 
